@@ -61,7 +61,7 @@ const AboutMe: React.FC = () => {
             <iframe
               allow="autoplay; gyroscope;"
               allowFullScreen
-              height="300px"
+              height="600px"
               referrerPolicy="strict-origin"
               src="https://www.kapwing.com/e/67c47d3ddc5c31c9a901d470"
               style={{ border: 0, width: "100%" }}
@@ -84,7 +84,7 @@ const AboutMe: React.FC = () => {
             <iframe
               allow="autoplay; gyroscope;"
               allowFullScreen
-              height="300px"
+              height="600px"
               referrerPolicy="strict-origin"
               src="https://www.kapwing.com/e/67c4814bee97ce58e3c425c1"
               style={{ border: 0, width: "100%" }}

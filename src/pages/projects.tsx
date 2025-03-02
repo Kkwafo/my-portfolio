@@ -41,7 +41,7 @@ const ProjectsSection: React.FC = () => {
             <ProjectCard
               title={project.title}
               description={project.description}
-              imgUrl={project.image}
+              imgUrl={project.image ?? ""}
               gitUrl={project.code}
               previewUrl={project.link}
             />
