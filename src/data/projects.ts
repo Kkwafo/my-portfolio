@@ -16,7 +16,7 @@ const projectsInfo = [
     description: 'React.js - Node.js - Tailwind',
     link: 'https://control-nutricional.netlify.app/',
     code: 'https://github.com/Kkwafo/Rehabilitando_Nutricion_vite',
-    tags: ['All', 'Fullstack', 'Frontend'],
+    tags: ['All', 'Fullstack', 'Frontend', 'Web'],
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const projectsInfo = [
     description: 'React.js - Node.js - Vite',
     link: 'https://app-control-presupuesto.netlify.app/',
     code: 'https://github.com/Kkwafo/Control-Presupuesto',
-    tags: ['All', 'Fullstack', 'Frontend'],
+    tags: ['All', 'Fullstack', 'Frontend', 'Web'],
   },
   {
     id: 5,
