@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import IconsInfo, { Icon } from "@/data/icons"; // ✅ Importación corregida
+import IconsInfo, { Icon } from "@/data/icons";
 
 const Skills: React.FC = () => {
   return (

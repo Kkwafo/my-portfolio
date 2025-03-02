@@ -13,10 +13,10 @@ const Header: React.FC = () => {
             Projects
           </Link>
           <Link href="/about" className="hover:underline">
-            About
+            About Me
           </Link>
           <Link href="/skills" className="hover:underline">
-            skills
+            Skills
           </Link>
           <Link href="/contact" className="hover:underline">
             Contact

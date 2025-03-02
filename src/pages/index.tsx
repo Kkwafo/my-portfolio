@@ -1,52 +1,72 @@
 import React from "react";
 import Image from "next/image";
+import { TypeAnimation } from "react-type-animation";
 
 export default function Home() {
   return (
-    <div className="Greetings text-center py-10">
-      <h1 className="text-4xl font-bold mb-4">Welcome to my Portfolio</h1>
-      <p className="text-lg text-gray-600">
-        Here you can find some of my projects and personal information!
-      </p>
+    <section className="py-12 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 rounded-xl border border-gray-300 dark:border-gray-700 shadow-md bg-white/10 dark:bg-black/10 relative">
+        {/* Left Side - Name and Title */}
+        <div className="md:w-1/3 text-left p-6 relative z-10">
+          <h1 className="text-5xl font-bold">Hello, my name is <span className="text-blue-500">Kofi Kwafo Awua</span></h1>
+          <div className="text-xl text-gray-600 dark:text-gray-400 mt-2 h-11 overflow-hidden flex items-center">
+            <TypeAnimation
+              sequence={[ "Fullstack Web Developer", 1000, "Technology Education Professor", 1000, "A cheerful person, even if I look serious", 1000, "A master in the kitchen", 1000 ]}
+              wrapper="span"
+              speed={50}
+              repeat={Infinity}
+              className="block"
+            />
+          </div>
+        </div>
 
-      <h4 className="text-xl font-semibold mt-6">I&apos;m a Fullstack Web Developer.</h4>
-
-      <p className="mt-4">On the Frontend, I focus on JavaScript and React technologies.</p>
-      <p>And in the Backend, I use Node.js, Express.js, EJS, Motoko, C#, .NET.</p>
-
-      {/* Imagen optimizada con next/image */}
-      <div className="flex justify-center mt-6">
-        <Image
-          src="https://kkwafo.github.io/My-css-personal-site/images/cvphoto.png"
-          alt="Cv"
-          width={150}
-          height={150}
-          className="rounded-full shadow-md"
-        />
+        {/* Right Side - Image */}
+        <div className="md:w-1/3 flex justify-center p-6">
+          <Image
+            src="https://kkwafo.github.io/My-css-personal-site/images/cvphoto.png"
+            alt="Kofi Kwafo Awua"
+            width={180}
+            height={180}
+            className="rounded-full shadow-lg border border-gray-300 dark:border-gray-700"
+          />
+        </div>
       </div>
+      {/* Tech Stack Section */}
+      <div className="max-w-6xl mx-auto mt-12 grid md:grid-cols-2 gap-12 px-6 items-start text-left">
+        {/* Frontend */}
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md h-full flex flex-col">
+          <h3 className="text-2xl font-semibold mb-4 text-center">Frontend Technologies</h3>
+          <ul className="text-lg text-gray-700 dark:text-gray-300 space-y-2 flex-1">
+            <li>React, Next.js, TypeScript</li>
+            <li>JavaScript (ES6+), Modern ECMAScript Features</li>
+            <li>Tailwind CSS, Redux, Material UI</li>
+            <li>Component-driven development & Design Systems</li>
+            <li>Performance Optimization & Lazy Loading</li>
+            <li>Responsive Web Design, UI/UX Principles</li>
+          </ul>
+        </div>
 
-      <p className="pG mt-4 text-lg">My name is Kofi Kwafo Awua. It&apos;s a pleasure!</p>
-
-      <h4 className="text-xl font-semibold mt-6">
-        Also, I&apos;m the founder of {" "}
-        <a
-          href="https://www.instagram.com/drylivingfood.cba/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 hover:underline"
-        >
-          Drylivingfood
-        </a>.
-      </h4>
-
-      <p className="mt-4 text-lg font-semibold">What is DrylivingFood?</p>
-      <p className="text-gray-600">
-        Drylivingfood is my business that I started during the pandemic in early 2020.
-        We are dedicated to health, nutrition, and environmental awareness. Our focus is
-        on producing dehydrated fruit snacks while maintaining the natural properties of the food.
-      </p>
-
-      <p className="mt-6 text-lg">But we are here to showcase my web development projects!</p>
-    </div>
+        {/* Backend */}
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md h-full flex flex-col">
+          <h3 className="text-2xl font-semibold mb-4 text-center">Backend Technologies</h3>
+          <ul className="text-lg text-gray-700 dark:text-gray-300 space-y-2 flex-1">
+            <li>Node.js, Express, RESTful APIs, GraphQL</li>
+            <li>Spring 3 (Spring Boot, Spring Batch), .NET</li>
+            <li>Microservices Architecture, Distributed Systems</li>
+            <li>Database Management: PostgreSQL, MySQL, SQL Server, MongoDB</li>
+            <li>Cloud & DevOps: Docker, Kubernetes, AWS, CI/CD Pipelines</li>
+            <li>Automated Reporting & Data Processing: CSV, XLSX, PDF Generation</li>
+          </ul>
+        </div>
+      </div>
+      {/* Professional Experience */}
+      <div className="max-w-5xl mx-auto text-center mt-12 px-6">
+        <h3 className="text-2xl font-semibold">Professional Experience</h3>
+        <p className="text-lg text-gray-700 dark:text-gray-300 mt-4">
+          Experienced in <b>software architecture, backend optimization</b>, and building scalable applications.
+          Specializing in <b>microservices, high-performance computing, and agile methodologies (Scrum, Kanban)</b>.
+        </p>
+      </div>
+    </section>
   );
 }

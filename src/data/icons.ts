@@ -70,8 +70,9 @@ const IconsInfo = [
   },
 
   {
-    Title: 'EJS',
-    ImgUrl: 'https://www.oscarlijo.com/blog/wp-content/uploads/2017/10/ejs.png',
+    Title: 'Spring 3',
+    ImgUrl:
+      'https://tse3.mm.bing.net/th?id=OIP.rqs0wwpTJehpN8LHBCvRRAHaDt&pid=Api&P=0&h=180',
     Content: '',
     id: 8,
     alt: 'Imagen icono',
@@ -142,9 +143,9 @@ const IconsInfo = [
     alt: 'Imagen icono',
   },
   {
-    Title: '.NET',
+    Title: 'Docker',
     ImgUrl:
-      'https://labs.tadigital.com/wp-content/uploads/2018/09/asp-net-core-identity-with-patterns.jpg',
+      'https://ms-azuretools.gallerycdn.vsassets.io/extensions/ms-azuretools/vscode-docker/1.29.4/1737476530544/Microsoft.VisualStudio.Services.Icons.Default',
     Content: '',
     id: 17,
     alt: 'Imagen icono',
