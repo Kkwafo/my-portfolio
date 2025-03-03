@@ -1,12 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import IconsInfo, { Icon } from "@/data/icons";
+import { useTranslation } from 'react-i18next';
 
 const Skills: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <section className="bg-gray-100 py-12">
       <div className="max-w-5xl mx-auto text-center">
-        <h1 className="text-4xl font-bold mb-6">My Skills</h1>
+        <h1 className="text-4xl font-bold mb-6">{t("skills")}</h1>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-5xl mx-auto">

@@ -6,9 +6,10 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { toggleTheme } from '@/store/themeSlice';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Header: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const darkMode = useSelector((state: RootState) => state.theme.darkMode);
 
@@ -30,22 +31,13 @@ const Header: React.FC = () => {
 
         {/* Selector de Idioma y Tema */}
         <div className="flex items-center space-x-4">
-          {/* Selector de Idioma */}
-          <select
-            className="bg-gray-700 text-white px-2 py-1 rounded"
-            onChange={(e) => i18n.changeLanguage(e.target.value)}
-            value={i18n.language}
-          >
-            <option value="en">🇬🇧 English</option>
-            <option value="es">🇪🇸 Español</option>
-          </select>
-
-          {/* Botón para Cambiar Tema */}
+          <LanguageSwitcher />
           <button
             onClick={() => dispatch(toggleTheme())}
             className="px-3 py-1 bg-gray-800 text-white rounded hover:bg-gray-600 transition-all"
           >
-            {darkMode ? "☀️ Light" : "🌙 Dark"}
+            {/* {darkMode ? "☀️ Light" : "🌙 Dark"} */}
+            {darkMode ? "☀️ OnWork" : "🌙 onWork"}
           </button>
         </div>
       </nav>

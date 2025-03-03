@@ -5,15 +5,17 @@ import Link from "next/link";
 import Image from "next/image";
 import github from "../../public/icons/github.png";
 import LinkedinIcon from "../../public/icons/linkedin.png";
+import { useTranslation } from 'react-i18next';
 
 const ContactMe: React.FC = () => {
+  const { t } = useTranslation();
   const [ message, setMessage ] = useState("");
-  const formRef = useRef<HTMLFormElement | null>(null); // Usamos useRef para manejar el formulario
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!formRef.current) return; // Si el formulario no está disponible, no hacer nada
+    if (!formRef.current) return;
 
     const data = new FormData(formRef.current);
 
@@ -38,9 +40,9 @@ const ContactMe: React.FC = () => {
     <section className="grid md:grid-cols-2 my-12 md:my-12 py-4 gap-4 relative" id="contact">
       {/* Left Side - Contact Info */}
       <div>
-        <h5 className="text-2xl font-bold text-white my-4">Let&apos;s Connect</h5>
+        <h5 className="text-2xl font-bold text-white my-4">{t("contactTitle")}</h5>
         <p className="text-gray-300 mb-4 max-w-md text-justify">
-          I&apos;m currently open to new opportunities. Whether you have a question or just want to say hi, feel free to reach out!
+          {t("contactDescription")}
         </p>
 
         <div className="socials flex flex-row gap-4">
@@ -64,7 +66,7 @@ const ContactMe: React.FC = () => {
         >
           <div className="mb-4">
             <label htmlFor="email" className="text-white block mb-2 text-sm font-medium">
-              Email
+              {t("emailLabel")}
             </label>
             <input
               type="email"
@@ -72,13 +74,13 @@ const ContactMe: React.FC = () => {
               name="email"
               required
               className="bg-gray-800 border border-gray-600 placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-2.5"
-              placeholder="your@email.com"
+              placeholder={t("emailPlaceholder")}
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="subject" className="text-white block mb-2 text-sm font-medium">
-              Subject
+              {t("subjectLabel")}
             </label>
             <input
               type="text"
@@ -86,13 +88,13 @@ const ContactMe: React.FC = () => {
               name="subject"
               required
               className="bg-gray-800 border border-gray-600 placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-2.5"
-              placeholder="Subject"
+              placeholder={t("subjectPlaceholder")}
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="message" className="text-white block text-sm mb-2 font-medium">
-              Message
+              {t("messageLabel")}
             </label>
             <textarea
               name="message"
@@ -100,7 +102,8 @@ const ContactMe: React.FC = () => {
               required
               rows={4}
               className="bg-gray-800 border border-gray-600 placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-2.5"
-              placeholder="Your message..."
+              placeholder={t("messagePlaceholder")}
+
             />
           </div>
 
@@ -108,10 +111,10 @@ const ContactMe: React.FC = () => {
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2.5 px-5 rounded-lg w-full"
           >
-            Send Message
+            {t("sendButton")}
           </button>
 
-          {message && <p className="text-green-500 text-center text-lg mt-4 font-bold">{message}</p>}
+          {message && <p className="text-green-500 text-center text-lg mt-4 font-bold">{t("successMessage")}</p>}
         </form>
       </div>
     </section>
