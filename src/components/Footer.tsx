@@ -1,11 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslation } from 'react-i18next';
+
 
 const Footer = () => {
+  const { t } = useTranslation();
   const year = new Date().getFullYear();
   return (
     <footer className="bg-gray-900 text-white py-6 text-center">
-      <p className="text-sm ">&copy; {year} Kofi Kwafo Awua. All rights reserved.</p>
+      <p className="text-sm ">&copy; {year} Kofi Kwafo Awua. {t("rightsReserved")}</p>
       <div className="flex justify-center space-x-6 mt-3 ml-6">
         <Link href="https://github.com/Kkwafo" target="_blank" rel="noopener noreferrer">
           <Image
