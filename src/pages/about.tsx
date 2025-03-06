@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import images from '@/data/images';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from "@/context/ThemeContext";
 
 const AboutMe: React.FC = () => {
   const { t } = useTranslation();
-  const [ activeTab, setActiveTab ] = useState(t("educationConventional"));
+  const { darkMode } = useTheme(); // Usa el modo oscuro global
+
+  const [ activeTab, setActiveTab ] = useState("educationConventional");
   const [ currentImageIndex, setCurrentImageIndex ] = useState(0);
   const [ isModalOpen, setIsModalOpen ] = useState(false);
   const [ modalImage, setModalImage ] = useState("");
-
-
 
   const showPrevImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
@@ -31,109 +32,79 @@ const AboutMe: React.FC = () => {
   };
 
   useEffect(() => {
-    setActiveTab(t("educationConventional"));
-  }, [ t ]);
+    setActiveTab("educationConventional");
+  }, []);
 
   return (
-    <section className="bg-gray-200 text-gray-900 p-10 rounded-lg shadow-md">
-      <div className="flex justify-center mb-6">
-        {[
-          { key: "educationConventional", label: t("educationConventional") },
-          { key: "educationDigital", label: t("educationDigital") },
-          { key: "environmentHobbies", label: t("environmentHobbies") }
-        ].map((tab) => (
+    <section className={`p-6 sm:p-8 md:p-10 rounded-lg shadow-xl max-w-5xl mx-auto transition-all ${darkMode ? "bg-gray-900 text-white" : "bg-gray-200 text-gray-900"}`}>
+      <div className="flex flex-wrap justify-center gap-3 mb-6">
+        {[ "educationConventional", "educationDigital", "environmentHobbies" ].map((tab) => (
           <button
-            key={tab.key}
-            className={`px-4 py-2 mx-2 rounded-md ${activeTab === tab.label ? "bg-blue-500 text-white" : "bg-gray-300 text-gray-700"
-              }`}
-            onClick={() => setActiveTab(tab.label)}
+            key={tab}
+            className={`px-4 py-2 rounded-md text-sm sm:text-base transition-all ${activeTab === tab ? "bg-blue-600 text-white" : "bg-gray-700 text-gray-300 hover:bg-blue-500"}`}
+            onClick={() => setActiveTab(tab)}
           >
-            {tab.label}
+            {t(tab)}
           </button>
         ))}
       </div>
 
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div>
+          <h1 className="text-3xl font-bold mb-4 text-blue-400">{t(`${activeTab}`) || ""}</h1>
+          <p className="text-lg leading-relaxed">{t(`${activeTab}Description`) || ""}</p>
+          {t(`${activeTab}Description2`, { defaultValue: "" }) && (
+            <p className="text-lg leading-relaxed">{t(`${activeTab}Description2`)}</p>
+          )}
+          {t(`${activeTab}Description3`, { defaultValue: "" }) && (
+            <p className="italic text-sm text-gray-400 mt-2">{t(`${activeTab}Description3`)}</p>
+          )}
+        </div>
 
-      {activeTab === t("educationConventional") && (
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="md:w-2/3 text-left">
-            <h1 className="text-3xl font-bold mb-4">{t("about")}</h1>
-            <p className="text-lg leading-relaxed max-w-2xl text-justify">
-              {t("aboutDescription")} <br />
-              {t("aboutDescription2")}<br />
-              <br />
-            </p>
-            <i className="text-sm max-w-2xl font-bold text-center block">
-              {t("aboutDescription3")}<br />
-            </i>
-
-          </div>
-          <div className="md:w-1/3 flex justify-center p-6">
+        <div className="w-full flex justify-center p-4">
+          {activeTab === "educationConventional" && (
             <iframe
+              className="w-full h-64 sm:h-80 md:h-96 rounded-lg shadow-lg"
               allow="autoplay; gyroscope;"
               allowFullScreen
-              height="600px"
               referrerPolicy="strict-origin"
               src="https://www.kapwing.com/e/67c47d3ddc5c31c9a901d470"
-              style={{ border: 0, width: "100%" }}
               title="Classroom 2024"
             ></iframe>
-          </div>
-        </div>
-      )}
+          )}
 
-      {activeTab === t("educationDigital") && (
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="md:w-2/3 text-left">
-            <h1 className="text-3xl font-bold mb-4">{t("aiTitle")}</h1>
-            <p className="text-lg leading-relaxed max-w-2xl text-justify">
-              {t("aiDescription")} <br />
-              {t("aiDescription2")}<br />
-            </p>
-          </div>
-          <div className="md:w-1/3 flex justify-center p-6">
+          {activeTab === "educationDigital" && (
             <iframe
+              className="w-full h-64 sm:h-80 md:h-96 rounded-lg shadow-lg"
               allow="autoplay; gyroscope;"
               allowFullScreen
-              height="600px"
               referrerPolicy="strict-origin"
               src="https://www.kapwing.com/e/67c4814bee97ce58e3c425c1"
-              style={{ border: 0, width: "100%" }}
               title="AI Technology"
             ></iframe>
-          </div>
-        </div>
-      )}
+          )}
 
-      {activeTab === t("environmentHobbies") && (
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="md:w-2/3 text-left">
-            <h1 className="text-3xl font-bold mb-4">{t("environmentHobbies")}</h1>
-            <p className="text-lg leading-relaxed max-w-2xl text-justify">
-              {t("environmentHobbiesDescription")}<br />
-              {t("environmentHobbiesDescription2")}<br />
-              {t("environmentHobbiesDescription3")}<br />
-            </p>
-          </div>
-          <div className="md:w-1/3 flex justify-center p-6 relative">
-            <button onClick={showPrevImage} className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">◀</button>
-            <Image
-              src={images[ currentImageIndex ]}
-              alt="Nature Scene"
-              width={300}
-              height={300}
-              className="rounded-lg cursor-pointer hover:opacity-80 transition object-cover"
-              onClick={() => openModal(images[ currentImageIndex ])}
-            />
-            <button onClick={showNextImage} className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">▶</button>
-          </div>
+          {activeTab === "environmentHobbies" && (
+            <div className="relative flex justify-center items-center">
+              <button onClick={showPrevImage} className="absolute left-0 bg-gray-700 text-white p-2 rounded-full">◀</button>
+              <Image
+                src={images[ currentImageIndex ]}
+                alt="Nature Scene"
+                width={350}
+                height={350}
+                className="rounded-lg shadow-md object-cover cursor-pointer hover:opacity-80 transition"
+                onClick={() => openModal(images[ currentImageIndex ])}
+              />
+              <button onClick={showNextImage} className="absolute right-0 bg-gray-700 text-white p-2 rounded-full">▶</button>
+            </div>
+          )}
         </div>
-      )}
+      </div>
 
       {isModalOpen && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-75 z-50" onClick={closeModal}>
-          <div className="relative">
-            <button onClick={closeModal} className="absolute top-0 right-0 bg-white text-black p-2 rounded-full">✖</button>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50" onClick={closeModal}>
+          <div className="relative p-4 bg-gray-800 rounded-lg">
+            <button onClick={closeModal} className="absolute top-2 right-2 bg-gray-600 text-gray-200 p-2 rounded-full">✖</button>
             <Image
               src={modalImage}
               alt="Expanded Nature Image"
