@@ -3,8 +3,6 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import github from "../../public/icons/github.png";
-import LinkedinIcon from "../../public/icons/linkedin.png";
 import { useTranslation } from 'react-i18next';
 import { useTheme } from "@/context/ThemeContext";
 
@@ -13,6 +11,9 @@ const ContactMe: React.FC = () => {
   const { darkMode } = useTheme();
   const [ message, setMessage ] = useState("");
   const formRef = useRef<HTMLFormElement | null>(null);
+
+  // Seleccionamos el ícono de GitHub según el modo oscuro o claro
+  const githubIcon = darkMode ? "/icons/github-whiteIcon.svg" : "/icons/github.png";
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -51,12 +52,22 @@ const ContactMe: React.FC = () => {
 
           <div className="flex flex-row gap-6">
             <Link href="https://github.com/Kkwafo" target="_blank">
-              <Image src={github} alt="Github Icon" width={40} height={40}
-                className="hover:scale-110 transition-transform hover:opacity-80" />
+              <Image
+                src={githubIcon}
+                alt="GitHub Icon"
+                width={40}
+                height={40}
+                className="hover:scale-110 transition-transform hover:opacity-80"
+              />
             </Link>
             <Link href="https://www.linkedin.com/in/kofi-kwafo-awua/" target="_blank">
-              <Image src={LinkedinIcon} alt="LinkedIn Icon" width={40} height={40}
-                className="hover:scale-110 transition-transform hover:opacity-80" />
+              <Image
+                src="/icons/linkedin.png"
+                alt="LinkedIn Icon"
+                width={40}
+                height={40}
+                className="hover:scale-110 transition-transform hover:opacity-80"
+              />
             </Link>
           </div>
         </div>

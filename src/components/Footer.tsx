@@ -10,6 +10,8 @@ const Footer = () => {
   const { darkMode } = useTheme();
   const year = new Date().getFullYear();
 
+  const githubIcon = darkMode ? "/icons/github-whiteIcon.svg" : "/icons/github.png";
+
   return (
     <footer className={`py-6 text-center transition-all shadow-lg 
       ${darkMode ? "bg-gray-900 text-gray-300" : "bg-gray-200 text-gray-800"}`}>
@@ -20,7 +22,7 @@ const Footer = () => {
         <Link href="https://github.com/Kkwafo" target="_blank" rel="noopener noreferrer">
           <Image
             className="w-7 h-7 hover:scale-110 hover:opacity-80 transition-transform"
-            src="/icons/github.png"
+            src={githubIcon}
             alt="GitHub"
             width={28}
             height={28}
