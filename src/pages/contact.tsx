@@ -14,6 +14,7 @@ const ContactMe: React.FC = () => {
 
   // Seleccionamos el ícono de GitHub según el modo oscuro o claro
   const githubIcon = darkMode ? "/icons/github-whiteIcon.svg" : "/icons/github.png";
+  const linkedinIcon = "/icons/linkedin.png";
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -43,13 +44,14 @@ const ContactMe: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 
-        {/* Contact Info */}
+        {/* Información de Contacto */}
         <div>
           <h5 className="text-2xl font-bold text-blue-400 my-4">{t("contactTitle")}</h5>
           <p className={`mb-6 max-w-md text-justify leading-relaxed ${darkMode ? "text-gray-400" : "text-gray-700"}`}>
             {t("contactDescription")}
           </p>
 
+          {/* Íconos de Redes Sociales */}
           <div className="flex flex-row gap-6">
             <Link href="https://github.com/Kkwafo" target="_blank">
               <Image
@@ -58,21 +60,23 @@ const ContactMe: React.FC = () => {
                 width={40}
                 height={40}
                 className="hover:scale-110 transition-transform hover:opacity-80"
+                loading="lazy"
               />
             </Link>
             <Link href="https://www.linkedin.com/in/kofi-kwafo-awua/" target="_blank">
               <Image
-                src="/icons/linkedin.png"
+                src={linkedinIcon}
                 alt="LinkedIn Icon"
                 width={40}
                 height={40}
                 className="hover:scale-110 transition-transform hover:opacity-80"
+                loading="lazy"
               />
             </Link>
           </div>
         </div>
 
-        {/* Contact Form */}
+        {/* Formulario de Contacto */}
         <div>
           <form
             ref={formRef}
@@ -99,7 +103,7 @@ const ContactMe: React.FC = () => {
               />
             </div>
 
-            {/* Subject */}
+            {/* Asunto */}
             <div className="mb-4">
               <label htmlFor="subject" className="block mb-2 text-sm font-semibold">
                 {t("subjectLabel")}
@@ -116,7 +120,7 @@ const ContactMe: React.FC = () => {
               />
             </div>
 
-            {/* Message */}
+            {/* Mensaje */}
             <div className="mb-4">
               <label htmlFor="message" className="block text-sm mb-2 font-semibold">
                 {t("messageLabel")}
@@ -133,7 +137,7 @@ const ContactMe: React.FC = () => {
               />
             </div>
 
-            {/* Submit Button */}
+            {/* Botón Enviar */}
             <button
               type="submit"
               className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg w-full transition transform hover:scale-105"

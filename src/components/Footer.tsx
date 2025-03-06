@@ -26,6 +26,7 @@ const Footer = () => {
             alt="GitHub"
             width={28}
             height={28}
+            loading="lazy"
           />
         </Link>
 
@@ -36,6 +37,7 @@ const Footer = () => {
             alt="LinkedIn"
             width={28}
             height={28}
+            loading="lazy"
           />
         </Link>
       </div>
