@@ -34,9 +34,9 @@ const Header: React.FC = () => {
         </button>
 
         {/* Menú principal */}
-        <div className={`absolute md:static top-16 left-0 w-full p-4 md:flex md:space-x-6 text-lg 
+        <div className={`fixed md:static top-16 left-0 w-full p-4 md:flex md:space-x-6 text-lg 
           ${menuOpen ? "block" : "hidden"} transition-all 
-          ${darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-black"}`}
+          ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"}`}
         >
           <Link href="/projects" className="block py-2 md:py-0 hover:text-blue-400 transition">{t("projects")}</Link>
           <Link href="/about" className="block py-2 md:py-0 hover:text-blue-400 transition">{t("about")}</Link>
