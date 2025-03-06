@@ -27,25 +27,43 @@ const Header: React.FC = () => {
           className="md:hidden block focus:outline-none"
         >
           {menuOpen ? (
-            <XMarkIcon className="w-8 h-8 text-white" />
+            <XMarkIcon className={`w-8 h-8 ${darkMode ? "text-white" : "text-black"}`} />
           ) : (
-            <Bars3Icon className="w-8 h-8 text-white" />
+            <Bars3Icon className={`w-8 h-8 ${darkMode ? "text-white" : "text-black"}`} />
           )}
         </button>
 
         {/* Menú principal */}
-        <div className={`absolute md:static top-16 left-0 w-full bg-gray-900 md:bg-transparent p-4 md:flex md:space-x-6 text-lg
-          ${menuOpen ? "block" : "hidden"} transition-all`}
+        <div className={`absolute md:static top-16 left-0 w-full p-4 md:flex md:space-x-6 text-lg 
+          ${menuOpen ? "block" : "hidden"} transition-all 
+          ${darkMode ? "bg-gray-900 text-blue-400" : "bg-gray-100 text-blue-400"}`}
         >
           <Link href="/projects" className="block py-2 md:py-0 hover:text-blue-400 transition">{t("projects")}</Link>
           <Link href="/about" className="block py-2 md:py-0 hover:text-blue-400 transition">{t("about")}</Link>
           <Link href="/skills" className="block py-2 md:py-0 hover:text-blue-400 transition">{t("skills")}</Link>
           <Link href="/contact" className="block py-2 md:py-0 hover:text-blue-400 transition">{t("contact")}</Link>
+
+          {/* Controles de idioma y tema en mobile */}
+          <div className="mt-4 md:hidden flex flex-col space-y-2">
+            <select
+              value={currentLanguage}
+              onChange={(e) => changeLanguage(e.target.value)}
+              className="bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:ring-2 focus:ring-blue-500 transition cursor-pointer hover:bg-gray-600"
+            >
+              <option value="en">English</option>
+              <option value="es">Español</option>
+            </select>
+            <button
+              onClick={toggleTheme}
+              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition-all shadow-md"
+            >
+              {darkMode ? "☀️ OFF" : "🌙 ON"}
+            </button>
+          </div>
         </div>
 
-        {/* Controles de idioma y tema */}
+        {/* Controles de idioma y tema en desktop */}
         <div className="hidden md:flex items-center space-x-4">
-          {/* Selector de idioma */}
           <select
             value={currentLanguage}
             onChange={(e) => changeLanguage(e.target.value)}
@@ -54,13 +72,11 @@ const Header: React.FC = () => {
             <option value="en">English</option>
             <option value="es">Español</option>
           </select>
-
-          {/* Botón Modo Oscuro */}
           <button
             onClick={toggleTheme}
             className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition-all shadow-md"
           >
-            {darkMode ? "☀️" : "🌙"}
+            {darkMode ? "☀️ OFF" : "🌙 ON"}
           </button>
         </div>
       </nav>
