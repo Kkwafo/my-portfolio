@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import images from '@/data/images';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from "@/context/ThemeContext";
 
 const AboutMe: React.FC = () => {
   const { t } = useTranslation();
+  const { darkMode } = useTheme(); // Usa el modo oscuro global
+
   const [ activeTab, setActiveTab ] = useState("educationConventional");
   const [ currentImageIndex, setCurrentImageIndex ] = useState(0);
   const [ isModalOpen, setIsModalOpen ] = useState(false);
@@ -33,7 +36,7 @@ const AboutMe: React.FC = () => {
   }, []);
 
   return (
-    <section className="bg-gray-900 text-white p-6 sm:p-8 md:p-10 rounded-lg shadow-xl max-w-5xl mx-auto">
+    <section className={`p-6 sm:p-8 md:p-10 rounded-lg shadow-xl max-w-5xl mx-auto transition-all ${darkMode ? "bg-gray-900 text-white" : "bg-gray-200 text-gray-900"}`}>
       <div className="flex flex-wrap justify-center gap-3 mb-6">
         {[ "educationConventional", "educationDigital", "environmentHobbies" ].map((tab) => (
           <button
@@ -49,9 +52,9 @@ const AboutMe: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         <div>
           <h1 className="text-3xl font-bold mb-4 text-blue-400">{t(`${activeTab}`) || ""}</h1>
-          <p className="text-lg leading-relaxed text-gray-300">{t(`${activeTab}Description`) || ""}</p>
+          <p className="text-lg leading-relaxed">{t(`${activeTab}Description`) || ""}</p>
           {t(`${activeTab}Description2`, { defaultValue: "" }) && (
-            <p className="text-lg leading-relaxed text-gray-300">{t(`${activeTab}Description2`)}</p>
+            <p className="text-lg leading-relaxed">{t(`${activeTab}Description2`)}</p>
           )}
           {t(`${activeTab}Description3`, { defaultValue: "" }) && (
             <p className="italic text-sm text-gray-400 mt-2">{t(`${activeTab}Description3`)}</p>

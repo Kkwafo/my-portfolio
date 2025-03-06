@@ -5,8 +5,12 @@ import { motion, useInView } from "framer-motion";
 import projectsInfo from '@/data/projects';
 import ProjectTag from '@/components/ProjectTag';
 import ProjectCard from '@/components/ProjectCard';
+import { useTheme } from "@/context/ThemeContext";
+import { useTranslation } from 'react-i18next';
 
 const ProjectsSection: React.FC = () => {
+  const { darkMode } = useTheme();
+  const { t } = useTranslation();
   const [ selectedTag, setSelectedTag ] = useState("All");
 
   const handleTagChange = (tag: string) => setSelectedTag(tag);
@@ -19,18 +23,22 @@ const ProjectsSection: React.FC = () => {
     : projectsInfo.filter(project => project.tags.includes(selectedTag));
 
   return (
-    <section id="projects" className="bg-gray-900 text-white py-12">
-      <h2 className="text-center text-4xl font-bold text-blue-400 mb-8">My Projects</h2>
+    <section id="projects" className={`py-12 transition-all ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"}`}>
+      <h2 className="text-center text-4xl font-bold text-blue-400 mb-8">{t("projects")}</h2>
 
       {/* Filter Tags */}
       <div className="flex flex-wrap justify-center gap-3 py-4">
-        {[ "All", "Web", "Fullstack", "Backend", "Frontend" ].map(tag => (
+        {[
+          "All", "Web", "Fullstack", "Backend", "Frontend"
+        ].map(tag => (
           <ProjectTag
             key={tag}
-            name={tag}
+            name={t(tag)}
             isSelected={selectedTag === tag}
-            onClick={handleTagChange}
-            className="px-4 py-2 bg-gray-700 hover:bg-blue-500 text-white rounded-lg cursor-pointer transition"
+            onClick={() => handleTagChange(tag)}
+            className={`px-4 py-2 rounded-full border-2 cursor-pointer transition 
+              ${selectedTag === tag ? "bg-blue-500 text-white border-blue-600 shadow-md"
+                : "bg-gray-100 text-gray-900 border-gray-400 hover:bg-blue-400 hover:text-white hover:border-blue-500"}`}
           />
         ))}
       </div>
@@ -43,7 +51,7 @@ const ProjectsSection: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.3, delay: index * 0.2 }}
-            className="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform hover:scale-105"
+            className={`p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform hover:scale-105 ${darkMode ? "bg-gray-800" : "bg-white"}`}
           >
             <ProjectCard
               title={project.title}

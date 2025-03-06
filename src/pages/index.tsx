@@ -1,10 +1,14 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import { useTranslation } from 'react-i18next';
+import { useTheme } from "@/context/ThemeContext";
 
 export default function Home() {
   const { t, i18n } = useTranslation();
+  const { darkMode } = useTheme();
   const [ animationKey, setAnimationKey ] = useState(0);
 
   useEffect(() => {
@@ -12,13 +16,16 @@ export default function Home() {
   }, [ i18n.language ]);
 
   return (
-    <section className="py-12 bg-gray-900 text-white">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 rounded-xl border border-gray-700 shadow-lg bg-gray-800 relative">
+    <section className={`py-12 transition-all ${darkMode ? "bg-gray-950 text-gray-300" : "bg-gray-100 text-gray-900"}`}>
+      <div className={`max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 rounded-xl border 
+        ${darkMode ? "border-gray-800 shadow-xl bg-gray-900" : "border-gray-300 shadow-md bg-white"} relative`}>
+
+        {/* Left Side - Name and Title */}
         <div className="md:w-1/2 text-left p-6 relative z-10">
           <h1 className="text-5xl font-bold">
             {t("nameIs")} <span className="text-blue-400">Kofi Kwafo Awua</span>
           </h1>
-          <div className="text-xl text-gray-300 mt-2 h-11 overflow-hidden flex items-center">
+          <div className="text-xl mt-2 h-11 overflow-hidden flex items-center">
             <TypeAnimation
               key={animationKey}
               sequence={[
@@ -35,21 +42,27 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Right Side - Profile Image */}
         <div className="md:w-1/3 flex justify-center p-6">
           <Image
             src="https://kkwafo.github.io/My-css-personal-site/images/cvphoto.png"
             alt="Kofi Kwafo Awua"
             width={180}
             height={180}
-            className="rounded-full shadow-lg border border-gray-700"
+            className="rounded-full shadow-lg border 
+              transition ${darkMode ? 'border-gray-700' : 'border-gray-300'}"
           />
         </div>
       </div>
 
+      {/* Tech Stack Section */}
       <div className="max-w-6xl mx-auto mt-12 grid md:grid-cols-2 gap-12 px-6 items-start text-left">
-        <div className="bg-gray-800 p-6 rounded-lg shadow-md h-full flex flex-col">
+
+        {/* Frontend Stack */}
+        <div className={`p-6 rounded-lg shadow-md h-full flex flex-col 
+          ${darkMode ? "bg-gray-900 text-gray-300" : "bg-white text-gray-900"}`}>
           <h3 className="text-2xl font-semibold mb-4 text-center text-blue-400">{t("frontEnd")}</h3>
-          <ul className="text-lg text-gray-300 space-y-2 flex-1">
+          <ul className="text-lg space-y-2 flex-1">
             <li>React, Next.js, TypeScript</li>
             <li>JavaScript (ES6+), Modern ECMAScript Features</li>
             <li>Tailwind CSS, Redux, Material UI</li>
@@ -59,9 +72,11 @@ export default function Home() {
           </ul>
         </div>
 
-        <div className="bg-gray-800 p-6 rounded-lg shadow-md h-full flex flex-col">
+        {/* Backend Stack */}
+        <div className={`p-6 rounded-lg shadow-md h-full flex flex-col 
+          ${darkMode ? "bg-gray-900 text-gray-300" : "bg-white text-gray-900"}`}>
           <h3 className="text-2xl font-semibold mb-4 text-center text-blue-400">{t("backEnd")}</h3>
-          <ul className="text-lg text-gray-300 space-y-2 flex-1">
+          <ul className="text-lg space-y-2 flex-1">
             <li>Node.js, Express, RESTful APIs, GraphQL</li>
             <li>Spring 3 (Spring Boot, Spring Batch), .NET</li>
             <li>Microservices Architecture, Distributed Systems</li>
@@ -72,10 +87,11 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Professional Experience */}
       <div className="max-w-5xl mx-auto text-center mt-12 px-6">
         <h3 className="text-2xl font-semibold text-blue-400">{t("professionalExperience")}</h3>
         <p
-          className="text-lg text-gray-300 mt-4"
+          className="text-lg mt-4"
           dangerouslySetInnerHTML={{ __html: t("professionalDescription") }}
         ></p>
       </div>
