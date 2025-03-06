@@ -1,17 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const Header: React.FC = () => {
+const Header: React.FC<{ menuOpen: boolean; setMenuOpen: (open: boolean) => void }> = ({ menuOpen, setMenuOpen }) => {
   const { t } = useTranslation();
   const { darkMode, toggleTheme } = useTheme();
   const { currentLanguage, changeLanguage } = useLanguage();
-  const [ menuOpen, setMenuOpen ] = useState(false);
 
   return (
     <header className={`p-4 shadow-lg transition-all duration-300 ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"}`}>
@@ -34,9 +33,9 @@ const Header: React.FC = () => {
         </button>
 
         {/* Menú principal */}
-        <div className={`absolute md:static top-16 left-0 w-full p-4 md:flex md:space-x-6 text-lg 
-          ${menuOpen ? "block" : "hidden"} transition-all 
-          ${darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-black"}`}
+        <div className={`fixed md:static top-16 left-0 w-full p-4 md:flex md:space-x-6 text-lg z-50
+          ${menuOpen ? "block" : "hidden"} 
+          ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"}`}
         >
           <Link href="/projects" className="block py-2 md:py-0 hover:text-blue-400 transition">{t("projects")}</Link>
           <Link href="/about" className="block py-2 md:py-0 hover:text-blue-400 transition">{t("about")}</Link>
@@ -57,7 +56,7 @@ const Header: React.FC = () => {
               onClick={toggleTheme}
               className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition-all shadow-md"
             >
-              {darkMode ? "☀️ OFF" : "🌙 ON"}
+              {darkMode ? "☀️" : "🌙"}
             </button>
           </div>
         </div>
