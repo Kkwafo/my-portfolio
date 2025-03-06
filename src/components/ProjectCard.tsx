@@ -31,8 +31,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ imgUrl: image, title, descrip
           width={400}
           height={300}
           objectFit="cover"
-          priority // Evita problemas de carga
           className="rounded-t-xl w-full h-full"
+          loading="lazy"
         />
 
         {/* Overlay con botones solo si tiene Preview */}

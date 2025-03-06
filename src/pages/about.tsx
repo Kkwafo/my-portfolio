@@ -94,6 +94,7 @@ const AboutMe: React.FC = () => {
                 height={350}
                 className="rounded-lg shadow-md object-cover cursor-pointer hover:opacity-80 transition"
                 onClick={() => openModal(images[ currentImageIndex ])}
+                loading="lazy"
               />
               <button onClick={showNextImage} className="absolute right-0 bg-gray-700 text-white p-2 rounded-full">▶</button>
             </div>
@@ -111,6 +112,7 @@ const AboutMe: React.FC = () => {
               width={600}
               height={600}
               className="rounded-lg"
+              loading="lazy"
             />
           </div>
         </div>
