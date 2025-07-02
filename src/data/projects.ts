@@ -1,13 +1,13 @@
 const projectsInfo = [
   {
     id: 1,
-    title: 'GuitarLa',
+    title: 'KofiIsNotCoffeeApp',
     image:
-      'https://i.postimg.cc/Ss6sKK0V/Whats-App-Image-2023-01-04-at-14-31-40.jpg',
-    description: 'Next.js - React Context',
-    link: 'https://guitar-la-nextjs-seven.vercel.app/',
-    code: 'https://github.com/Kkwafo/GuitarLaNextjs',
-    tags: ['All', 'Web', 'Frontend'],
+      'https://i.postimg.cc/9Qfkz1BQ/Gestion-De-COcina.jpg',
+    description: 'Next.js',
+    link: 'https://kofiisnotcoffeeapp.vercel.app/',
+    code: 'https://github.com/Kkwafo/KofiIsNotCoffeeApp',
+    tags: ['All', 'Web', 'Fullstack'],
   },
   {
     id: 2,
